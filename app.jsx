@@ -257,6 +257,16 @@ function HomeView({ termsByCluster, progress, onOpenModule, onOpenTerm, complete
           {completedCount > 0 && (
             <button className="btn-ghost" onClick={onReset}>Reset progress</button>
           )}
+          <a className="btn-ghost" href="/teaching-guide.html" target="_blank" rel="noopener"
+             style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+              <path d="M2 3h12M2 7h8M2 11h6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
+            </svg>
+            Teaching Guide
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+              <path d="M6 3h7v7M13 3L6 10" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/>
+            </svg>
+          </a>
         </div>
 
         <div className="hero-meta">
@@ -329,6 +339,7 @@ function HomeView({ termsByCluster, progress, onOpenModule, onOpenTerm, complete
             <a href="https://swimed.substack.com/" target="_blank" style={{ color: 'var(--ink-muted)', fontSize: '13px' }}>Substack</a>
             <a href="https://www.linkedin.com/in/ramnarayan/" target="_blank" style={{ color: 'var(--ink-muted)', fontSize: '13px' }}>LinkedIn</a>
             <a href="https://datadrivenmed.github.io/" target="_blank" style={{ color: 'var(--ink-muted)', fontSize: '13px' }}>GitHub</a>
+            <a href="/teaching-guide.html" target="_blank" style={{ color: 'var(--accent)', fontSize: '13px', fontWeight: '600' }}>Teaching Guide ↗</a>
           </div>
         </div>
         <div className="foot-disc">An educational tool, not a medical device. Always verify AI output against current guidelines and institutional policy.</div>
