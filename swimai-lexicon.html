@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SwimAI Lexicon | AI Literacy for Competitive Swimming</title>
+<meta name="description" content="A coach-facing AI lexicon for competitive swimming, race analytics, stroke video, athlete monitoring, privacy, and vendor vetting."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet"/>
+<style>
+:root { --bg:#06131f; --panel:rgba(255,255,255,.075); --panel2:rgba(255,255,255,.11); --ink:#f4fbff; --soft:#c7d8e8; --muted:#8eabc1; --line:rgba(255,255,255,.14); --cyan:#64d8ff; --blue:#4d8cff; --green:#9df0c1; --amber:#ffd36e; --coral:#ff8f8f; --shadow:0 30px 90px rgba(0,0,0,.35); }
+* { box-sizing:border-box; }
+body { margin:0; font-family:"DM Sans",system-ui,-apple-system,Segoe UI,sans-serif; color:var(--ink); background:radial-gradient(circle at 20% 0%,rgba(100,216,255,.28),transparent 35%),radial-gradient(circle at 90% 15%,rgba(77,140,255,.22),transparent 35%),linear-gradient(180deg,#06131f 0%,#081827 45%,#05101a 100%); min-height:100vh; }
+a { color:var(--cyan); text-decoration:none; } a:hover { text-decoration:underline; }
+.shell { width:min(1180px,calc(100% - 32px)); margin:0 auto; }
+.topbar { position:sticky; top:0; z-index:10; backdrop-filter:blur(18px); background:rgba(6,19,31,.78); border-bottom:1px solid var(--line); }
+.topbar-inner { display:flex; align-items:center; justify-content:space-between; gap:18px; padding:14px 0; }
+.brand { display:flex; align-items:center; gap:12px; color:var(--ink); }
+.mark { width:42px; height:42px; border-radius:14px; display:grid; place-items:center; background:linear-gradient(135deg,rgba(100,216,255,.22),rgba(77,140,255,.22)); border:1px solid rgba(255,255,255,.18); box-shadow:inset 0 0 18px rgba(255,255,255,.07); }
+.brand-title { font-weight:800; letter-spacing:.2px; } .brand-sub { color:var(--muted); font-size:13px; }
+.navlinks { display:flex; gap:10px; flex-wrap:wrap; } .navlinks a { color:var(--soft); font-size:13px; padding:8px 11px; border:1px solid var(--line); border-radius:999px; background:rgba(255,255,255,.04); }
+.hero { padding:62px 0 34px; } .hero-grid { display:grid; grid-template-columns:1.12fr .88fr; gap:28px; align-items:stretch; }
+.kicker { display:inline-flex; gap:8px; align-items:center; color:var(--green); background:rgba(157,240,193,.08); border:1px solid rgba(157,240,193,.22); padding:8px 12px; border-radius:999px; font-size:13px; font-weight:800; }
+h1 { margin:18px 0 16px; font-family:"Fraunces",serif; font-size:clamp(44px,7vw,82px); line-height:.95; letter-spacing:-2.4px; }
+.lede { color:var(--soft); font-size:20px; line-height:1.55; max-width:780px; }
+.cta-row { display:flex; gap:12px; flex-wrap:wrap; margin-top:24px; }
+.btn { border:1px solid var(--line); border-radius:15px; padding:12px 16px; color:var(--ink); background:var(--panel); cursor:pointer; font-weight:800; display:inline-flex; align-items:center; gap:8px; }
+.btn.primary { background:linear-gradient(135deg,rgba(100,216,255,.28),rgba(77,140,255,.27)); border-color:rgba(100,216,255,.35); }
+.hero-card { background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.06)); border:1px solid var(--line); border-radius:28px; padding:24px; box-shadow:var(--shadow); position:relative; overflow:hidden; }
+.hero-card:before { content:""; position:absolute; inset:-80px -40px auto auto; width:220px; height:220px; border-radius:50%; background:rgba(100,216,255,.13); filter:blur(10px); }
+.card-label { color:var(--cyan); font-weight:800; font-size:13px; letter-spacing:.08em; text-transform:uppercase; position:relative; }
+.checklist { margin:18px 0 0; padding:0; list-style:none; display:grid; gap:12px; position:relative; }
+.checklist li { display:grid; grid-template-columns:22px 1fr; gap:10px; color:var(--soft); line-height:1.42; } .checklist b { color:var(--ink); } .tick { color:var(--green); font-weight:900; }
+.stats { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin:24px 0 0; }
+.stat { background:rgba(255,255,255,.06); border:1px solid var(--line); border-radius:18px; padding:16px; } .stat strong { display:block; font-size:28px; } .stat span { color:var(--muted); font-size:13px; }
+.section { padding:34px 0; } .section-head { display:flex; justify-content:space-between; align-items:end; gap:18px; margin-bottom:18px; }
+.section h2 { margin:0; font-family:"Fraunces",serif; font-size:clamp(30px,4vw,48px); letter-spacing:-1.2px; } .section p.sub { color:var(--soft); line-height:1.55; max-width:760px; }
+.controls { display:grid; grid-template-columns:1fr auto; gap:12px; align-items:center; }
+.search { width:100%; padding:14px 15px; border-radius:16px; background:rgba(255,255,255,.08); border:1px solid var(--line); color:var(--ink); outline:none; }
+.filters { display:flex; gap:8px; flex-wrap:wrap; }
+.chip { border:1px solid var(--line); background:rgba(255,255,255,.06); color:var(--soft); padding:9px 11px; border-radius:999px; cursor:pointer; font-weight:800; font-size:13px; }
+.chip.active { color:#06131f; background:var(--cyan); border-color:transparent; }
+.grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:18px; }
+.term { background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.055)); border:1px solid var(--line); border-radius:22px; padding:18px; min-height:310px; box-shadow:0 18px 40px rgba(0,0,0,.15); }
+.term-top { display:flex; justify-content:space-between; gap:10px; align-items:flex-start; margin-bottom:10px; }
+.badge { font-size:12px; font-weight:900; color:var(--green); border:1px solid rgba(157,240,193,.24); background:rgba(157,240,193,.08); padding:5px 8px; border-radius:999px; }
+.term h3 { margin:0; font-size:22px; letter-spacing:-.4px; } .term p { color:var(--soft); line-height:1.48; margin:10px 0; }
+.mini { margin-top:12px; padding-top:12px; border-top:1px solid var(--line); display:grid; gap:8px; }
+.mini div { color:var(--muted); font-size:14px; line-height:1.42; } .mini b { color:var(--ink); }
+.panel-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.panel { background:var(--panel); border:1px solid var(--line); border-radius:24px; padding:20px; }
+.panel h3 { margin:0 0 10px; font-size:21px; } .panel ul { margin:0; padding-left:20px; color:var(--soft); line-height:1.55; } .panel li { margin:8px 0; }
+.callout { border:1px solid rgba(255,211,110,.28); background:rgba(255,211,110,.08); border-radius:24px; padding:22px; color:var(--soft); line-height:1.55; }
+.callout b { color:var(--amber); }
+.table-wrap { overflow:auto; border:1px solid var(--line); border-radius:22px; background:rgba(255,255,255,.055); }
+table { width:100%; border-collapse:collapse; min-width:760px; } th,td { padding:14px; text-align:left; vertical-align:top; border-bottom:1px solid var(--line); color:var(--soft); line-height:1.45; } th { color:var(--ink); font-size:13px; text-transform:uppercase; letter-spacing:.08em; background:rgba(255,255,255,.055); } td:first-child { color:var(--ink); font-weight:800; }
+.sources { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; } .source { border:1px solid var(--line); border-radius:18px; padding:15px; background:rgba(255,255,255,.055); color:var(--soft); line-height:1.45; }
+footer { padding:40px 0 60px; color:var(--muted); border-top:1px solid var(--line); margin-top:40px; }
+@media (max-width:900px) { .hero-grid,.grid,.panel-grid,.sources { grid-template-columns:1fr; } .stats { grid-template-columns:repeat(2,1fr); } .controls { grid-template-columns:1fr; } .topbar-inner { align-items:flex-start; flex-direction:column; } }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="shell topbar-inner">
+    <a class="brand" href="#">
+      <div class="mark">〰</div>
+      <div><div class="brand-title">SwimAI Lexicon</div><div class="brand-sub">AI literacy for competitive swimming</div></div>
+    </a>
+    <nav class="navlinks">
+      <a href="#lexicon">Lexicon</a><a href="#vetting">Tool vetting</a><a href="#governance">Governance</a><a href="#sources">Sources</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="shell hero-grid">
+    <div>
+      <div class="kicker">Coach judgment first. AI as decision support.</div>
+      <h1>The AI language elite swim coaches need.</h1>
+      <p class="lede">A practical lexicon for understanding, questioning, and responsibly using AI in race analysis, stroke video, athlete monitoring, and vendor evaluation.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#lexicon">Start with the lexicon</a>
+        <a class="btn" href="#vetting">Use the vendor checklist</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><strong>52</strong><span>coach-facing terms</span></div>
+        <div class="stat"><strong>5</strong><span>learning modules</span></div>
+        <div class="stat"><strong>12</strong><span>vendor questions</span></div>
+        <div class="stat"><strong>0</strong><span>performance guarantees</span></div>
+      </div>
+    </div>
+    <aside class="hero-card">
+      <div class="card-label">What this is</div>
+      <ul class="checklist">
+        <li><span class="tick">✓</span><span><b>Educational.</b> It helps coaches understand AI concepts before using AI outputs in training decisions.</span></li>
+        <li><span class="tick">✓</span><span><b>Swim-specific.</b> Every term connects to splits, video, stroke mechanics, training load, or athlete data.</span></li>
+        <li><span class="tick">✓</span><span><b>Protective.</b> It flags false precision, automation bias, minor athlete privacy, and weak vendor claims.</span></li>
+        <li><span class="tick">✓</span><span><b>Not a substitute.</b> It does not replace coaches, officials, physicians, athletic trainers, or safeguarding policies.</span></li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<section class="section" id="why">
+  <div class="shell">
+    <div class="section-head"><div><h2>Why swim needs an AI lexicon</h2><p class="sub">Competitive swimming already runs on data: splits, time standards, video, stroke rate, attendance, training cycles, and meet context. AI adds a new layer, but coaches need shared language before they can evaluate whether a tool is useful, safe, and valid.</p></div></div>
+    <div class="panel-grid">
+      <div class="panel"><h3>Race intelligence</h3><ul><li>Separate meaningful race patterns from normal variation.</li><li>Ask whether predicted drops are ranges, not promises.</li><li>Connect split gaps to coach-actionable training priorities.</li></ul></div>
+      <div class="panel"><h3>Video and stroke AI</h3><ul><li>Understand pose estimation, occlusion, frame rate, and camera angle bias.</li><li>Question whether labels were created by qualified reviewers.</li><li>Resist precision that exceeds video quality.</li></ul></div>
+      <div class="panel"><h3>Athlete protection</h3><ul><li>Use stricter safeguards for minor athlete data.</li><li>Avoid permanent labels about potential, motivation, or risk.</li><li>Keep coaches responsible for context and final decisions.</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="lexicon">
+  <div class="shell">
+    <div class="section-head">
+      <div><h2>The lexicon</h2><p class="sub">Search or filter terms. Each entry includes a definition, swim example, coach question, and red flag.</p></div>
+    </div>
+    <div class="controls">
+      <input class="search" id="search" placeholder="Search terms, examples, risks, or questions"/>
+      <div class="filters" id="filters"></div>
+    </div>
+    <div class="grid" id="cards"></div>
+  </div>
+</section>
+
+<section class="section" id="vetting">
+  <div class="shell">
+    <div class="section-head"><div><h2>Vendor vetting checklist</h2><p class="sub">Use these questions before a club adopts a race-analysis, video-analysis, wearable, recruiting, or athlete-monitoring AI tool.</p></div></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Domain</th><th>Question to ask</th><th>Evidence to request</th></tr></thead>
+        <tbody>
+          <tr><td>Population fit</td><td>Was the system tested on swimmers like ours?</td><td>Results by age, sex, stroke, event, course, level, and disability status where relevant.</td></tr>
+          <tr><td>Video conditions</td><td>What camera angles, frame rates, lighting, pool types, and underwater conditions were tested?</td><td>Error rates by condition and examples of failure cases.</td></tr>
+          <tr><td>Measurement accuracy</td><td>How close are automated splits, turns, or stroke metrics to a trusted reference?</td><td>Comparison with official timing, high-quality manual coding, or expert review.</td></tr>
+          <tr><td>Prediction claims</td><td>Does the tool give a range or a single exact future time?</td><td>Calibration data, prediction intervals, and past prospective validation.</td></tr>
+          <tr><td>Coach override</td><td>Can coaches edit, reject, or annotate AI recommendations?</td><td>Audit trail showing AI output, coach decision, and reason for override.</td></tr>
+          <tr><td>Minor data</td><td>What data are collected from minors and how is consent handled?</td><td>Privacy terms, parent or guardian workflow, retention policy, access controls, and deletion process.</td></tr>
+          <tr><td>Data reuse</td><td>Can athlete data be used to train the vendor's models?</td><td>Contract language for opt-in, opt-out, de-identification, sale, sharing, and deletion.</td></tr>
+          <tr><td>Safety boundaries</td><td>What recommendations are blocked?</td><td>Guardrails against medical advice, unsafe training jumps, psychological labels, or direct unsupervised messaging to minors.</td></tr>
+          <tr><td>Transparency</td><td>Can the tool explain why it made a recommendation?</td><td>Feature importance, supporting race segments, video frames, or rules used for the conclusion.</td></tr>
+          <tr><td>Security</td><td>How are video, wellness, contact, and performance data protected?</td><td>Encryption, access logs, incident response, role-based permissions, and data processing agreements.</td></tr>
+          <tr><td>Governance</td><td>Who owns review, approval, and monitoring after adoption?</td><td>Club policy naming responsible coaches, administrators, and review cadence.</td></tr>
+          <tr><td>Marketing claims</td><td>Which claims are evidence-based and which are promotional?</td><td>Peer-reviewed studies, independent validation, or clear statement that evidence is preliminary.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="governance">
+  <div class="shell">
+    <div class="callout"><b>Recommended use rule:</b> AI can summarize patterns and raise questions. It should not independently determine training load, medical status, athlete potential, team placement, recruiting value, or communication with minors. The coach remains responsible for judgment, context, safety, and follow-through.</div>
+  </div>
+</section>
+
+<section class="section" id="sources">
+  <div class="shell">
+    <div class="section-head"><div><h2>Source anchors</h2><p class="sub">This prototype is grounded in widely used AI risk, child privacy, safeguarding, and swimming governance references. It is not legal advice and should be adapted to each club, federation, school, or facility policy.</p></div></div>
+    <div class="sources">
+      <div class="source"><b>NIST AI Risk Management Framework.</b><br/>Used to anchor terms such as trustworthiness, validation, risk management, governance, and human oversight.<br/><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">nist.gov/itl/ai-risk-management-framework</a></div>
+      <div class="source"><b>FTC Children's Privacy and COPPA guidance.</b><br/>Used to frame special caution for collection, storage, use, and sharing of data from children under 13 in the United States.<br/><a href="https://www.ftc.gov/business-guidance/privacy-security/childrens-privacy" target="_blank" rel="noopener">ftc.gov/business-guidance/privacy-security/childrens-privacy</a></div>
+      <div class="source"><b>U.S. Center for SafeSport MAAPP.</b><br/>Used to reinforce that technology, communication, and access practices involving minors must follow safeguarding expectations.<br/><a href="https://maapp.uscenterforsafesport.org/" target="_blank" rel="noopener">maapp.uscenterforsafesport.org</a></div>
+      <div class="source"><b>USA Swimming MAAPP and time resources.</b><br/>Used as swimming-specific reference points for minor athlete policy context and official data resources such as time standards and results tools.<br/><a href="https://www.usaswimming.org/safe-sport/minor-athlete-abuse-prevention-policy" target="_blank" rel="noopener">usaswimming.org/safe-sport/minor-athlete-abuse-prevention-policy</a><br/><a href="https://www.usaswimming.org/times/time-standards" target="_blank" rel="noopener">usaswimming.org/times/time-standards</a></div>
+      <div class="source"><b>World Aquatics Competition Regulations.</b><br/>Used as an official reminder that performance analysis must be interpreted within current competition rules and standards.<br/><a href="https://www.worldaquatics.com/rules/competition-regulations" target="_blank" rel="noopener">worldaquatics.com/rules/competition-regulations</a></div>
+      <div class="source"><b>Publication note.</b><br/>For media or governing-body review, this page should be described as an educational AI literacy resource, not an approved coaching credential, medical tool, compliance tool, or official federation product.</div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="shell">
+    <b>SwimAI Lexicon</b><br/>
+    Built by Ram Paragi / DataDrivenMed as an educational prototype for competitive swimming AI literacy. Not affiliated with USA Swimming, World Aquatics, the U.S. Center for SafeSport, or the FTC. Coaches and clubs should verify policies with their governing bodies and legal counsel.
+  </div>
+</footer>
+
+<script>
+const TERMS = [
+  {
+    "cluster": "Foundations",
+    "name": "Algorithm",
+    "definition": "A step-by-step rule or procedure a computer follows to turn inputs into outputs.",
+    "example": "A split calculator uses rules to compare first and second 50 performance. An AI system may learn some of those rules from data instead of having every rule written by a person.",
+    "question": "Is this rule written by the vendor, learned from swimmer data, or both?",
+    "redflag": "Treating a simple calculator as if it has true coaching judgment."
+  },
+  {
+    "cluster": "Foundations",
+    "name": "Model",
+    "definition": "A system trained to detect patterns and produce outputs such as classifications, predictions, rankings, or text.",
+    "example": "A model may estimate whether a swimmer is fading late in a 100 free based on splits, tempo, turns, and prior races.",
+    "question": "What exactly does the model output, and what decision is it supposed to support?",
+    "redflag": "A vendor says the model is 'elite' but cannot define its input data, validation set, or failure cases."
+  },
+  {
+    "cluster": "Foundations",
+    "name": "Training Data",
+    "definition": "The examples used to teach an AI system the patterns it later applies to new cases.",
+    "example": "For swim video AI, training data might include labeled footage of starts, breakouts, body position, and stroke phases.",
+    "question": "Were swimmers like mine represented by age, stroke, event, skill level, pool type, and camera angle?",
+    "redflag": "A tool trained mostly on adults is marketed to age-group swimmers without separate testing."
+  },
+  {
+    "cluster": "Foundations",
+    "name": "Inference",
+    "definition": "The moment an AI applies what it has learned to a new input.",
+    "example": "When a coach uploads a 100 fly video and the system labels the underwater phase, that is inference.",
+    "question": "Is the tool analyzing this swimmer directly, or using generic patterns from other athletes?",
+    "redflag": "The output sounds individualized but is mostly a generic template."
+  },
+  {
+    "cluster": "Foundations",
+    "name": "Classification",
+    "definition": "Sorting inputs into categories.",
+    "example": "A tool may classify a race limiter as start, breakout, turn, tempo, endurance, pacing, or finish.",
+    "question": "Are the categories clinically and technically meaningful to a coach?",
+    "redflag": "The system forces complex performance problems into oversimplified labels."
+  },
+  {
+    "cluster": "Foundations",
+    "name": "Confidence Score",
+    "definition": "A number that suggests how certain the system is about an output.",
+    "example": "A stroke AI may say it is 82 percent confident that the swimmer has early head lift on breath cycles.",
+    "question": "How was confidence calibrated, and does 82 percent actually mean it is right 82 percent of the time?",
+    "redflag": "High confidence is treated as proof."
+  },
+  {
+    "cluster": "Foundations",
+    "name": "Validation",
+    "definition": "Testing whether a model works on data it did not train on.",
+    "example": "A video tool should be tested on new swimmers, pools, lighting conditions, and camera angles before coaches trust it.",
+    "question": "Has performance been measured on independent swim data, not only vendor examples?",
+    "redflag": "Only polished demo videos are shown."
+  },
+  {
+    "cluster": "Foundations",
+    "name": "Benchmark",
+    "definition": "A standard test used to compare performance across systems or over time.",
+    "example": "A swim benchmark might compare automated split detection to official race video timestamps or manual coach review.",
+    "question": "What is the gold standard used for comparison?",
+    "redflag": "The benchmark measures convenience, not coaching accuracy."
+  },
+  {
+    "cluster": "Foundations",
+    "name": "Explainability",
+    "definition": "The ability to show why a system produced an output.",
+    "example": "A useful race tool should explain that a 100 free recommendation comes from second-50 drop-off, turn speed loss, and prior taper response.",
+    "question": "Can the coach see the evidence behind the output?",
+    "redflag": "The tool gives a recommendation but no reason."
+  },
+  {
+    "cluster": "Foundations",
+    "name": "Generalization",
+    "definition": "How well a system performs on new athletes, meets, pools, or seasons.",
+    "example": "A model that works on national-level 17-year-olds may not work on 11-12 swimmers, late maturers, or Masters swimmers.",
+    "question": "Where does the tool stop being reliable?",
+    "redflag": "Success on one team is presented as universal validity."
+  },
+  {
+    "cluster": "Race Intelligence",
+    "name": "Split Modeling",
+    "definition": "Breaking a race into segments and analyzing how each segment contributes to the final time.",
+    "example": "For a 200 free, the model may compare each 50, turn segment, and back-half speed decay against the swimmer's own history.",
+    "question": "Which segment actually cost the most time relative to the goal?",
+    "redflag": "Using only final time and ignoring how the race was swum."
+  },
+  {
+    "cluster": "Race Intelligence",
+    "name": "Feature Engineering",
+    "definition": "Choosing useful variables from raw data so a model can analyze performance.",
+    "example": "Useful features may include reaction time, 15-meter split, turn time, stroke count, tempo, distance per stroke, and final 15 meters.",
+    "question": "Which features are coach-relevant and measurable with reasonable accuracy?",
+    "redflag": "Feeding the model many variables without knowing which ones matter."
+  },
+  {
+    "cluster": "Race Intelligence",
+    "name": "Signal vs Noise",
+    "definition": "Separating real performance patterns from normal variation.",
+    "example": "A 0.15 second change in a 50 free may reflect timing, start execution, suit, fatigue, or meet conditions rather than a true training effect.",
+    "question": "Is this change large enough and repeated enough to act on?",
+    "redflag": "Every small time change is treated as a meaningful trend."
+  },
+  {
+    "cluster": "Race Intelligence",
+    "name": "Trend Analysis",
+    "definition": "Looking at performance patterns over time.",
+    "example": "A coach may track whether a swimmer's 100 breast second 50 is improving across the season, not just after one meet.",
+    "question": "What does the trend show across several comparable swims?",
+    "redflag": "Comparing tapered championship times with tired in-season times without context."
+  },
+  {
+    "cluster": "Race Intelligence",
+    "name": "Regression",
+    "definition": "A statistical method for estimating relationships between variables.",
+    "example": "Regression may estimate how training attendance, age, prior best time, and race segment metrics relate to future performance.",
+    "question": "Does the model explain association only, or is it claiming cause?",
+    "redflag": "A correlation is sold as the reason the swimmer improved."
+  },
+  {
+    "cluster": "Race Intelligence",
+    "name": "Prediction Interval",
+    "definition": "A realistic range of likely outcomes, not a guaranteed result.",
+    "example": "Instead of saying a swimmer will go 54.20, a better tool might say 54.0 to 55.1 under similar meet conditions.",
+    "question": "What is the likely range, and what assumptions define it?",
+    "redflag": "A single precise future time is presented as certainty."
+  },
+  {
+    "cluster": "Race Intelligence",
+    "name": "Outlier Detection",
+    "definition": "Identifying data points that do not fit the usual pattern.",
+    "example": "A swimmer's unusually slow 100 back may be flagged because it differs sharply from recent training and race history.",
+    "question": "Was this an error, illness, bad start, DQ risk, emotional stress, or a true regression?",
+    "redflag": "The tool removes an outlier without asking why it happened."
+  },
+  {
+    "cluster": "Race Intelligence",
+    "name": "Benchmarking",
+    "definition": "Comparing performance to a relevant reference group or standard.",
+    "example": "A 13-year-old's splits should be compared with swimmers of similar age, sex, course, event, and competition level.",
+    "question": "Is the comparison group fair?",
+    "redflag": "Benchmarking a developing swimmer against senior elite profiles."
+  },
+  {
+    "cluster": "Race Intelligence",
+    "name": "Cut-Time Gap",
+    "definition": "The difference between current performance and a target standard.",
+    "example": "A swimmer might be 1.30 seconds from a Futures cut in the 100 fly, but the actionable question is where that 1.30 seconds can realistically come from.",
+    "question": "Which race segments provide the most realistic improvement path?",
+    "redflag": "The tool says 'train harder' without segment-level diagnosis."
+  },
+  {
+    "cluster": "Race Intelligence",
+    "name": "Taper Response",
+    "definition": "How a swimmer's performance changes after reduced training load and race preparation.",
+    "example": "Some swimmers drop predictably at taper meets, while others respond less consistently because of growth, stress, illness, or season design.",
+    "question": "Is the prediction based on this athlete's own taper history?",
+    "redflag": "A model assumes every swimmer improves the same percentage at championship meets."
+  },
+  {
+    "cluster": "Video and Stroke AI",
+    "name": "Computer Vision",
+    "definition": "AI methods that analyze images or video.",
+    "example": "A system may identify body line, hand entry, breakout timing, or turn position from race or practice footage.",
+    "question": "What can the camera actually see clearly?",
+    "redflag": "The software claims accuracy despite bubbles, splash, occlusion, or poor angle."
+  },
+  {
+    "cluster": "Video and Stroke AI",
+    "name": "Pose Estimation",
+    "definition": "Estimating joint and body landmark positions from video.",
+    "example": "Pose estimation may estimate elbow, shoulder, hip, knee, and ankle positions during freestyle recovery or butterfly pull.",
+    "question": "Was the system tested in water, not only on dryland movement?",
+    "redflag": "Dryland pose accuracy is assumed to transfer to swimming."
+  },
+  {
+    "cluster": "Video and Stroke AI",
+    "name": "Landmark Detection",
+    "definition": "Finding specific points on the body or environment in each video frame.",
+    "example": "The tool may track hand entry, head position, hip line, or feet at the wall.",
+    "question": "Which landmarks are reliable above water and underwater?",
+    "redflag": "Important landmarks disappear but the tool still reports precise angles."
+  },
+  {
+    "cluster": "Video and Stroke AI",
+    "name": "Frame Rate",
+    "definition": "How many video frames are captured per second.",
+    "example": "A low-frame-rate clip can miss short events such as start reaction, hand touch, breakout, and turn timing.",
+    "question": "Is the frame rate high enough for the motion being measured?",
+    "redflag": "A coach makes fine timing decisions from blurry low-frame-rate video."
+  },
+  {
+    "cluster": "Video and Stroke AI",
+    "name": "Occlusion",
+    "definition": "When the object or body part the AI needs to see is blocked.",
+    "example": "A swimmer's hand may be hidden by water, another swimmer, splash, lane line, or body rotation.",
+    "question": "How often is the key movement hidden?",
+    "redflag": "The tool does not disclose that it guessed through occlusion."
+  },
+  {
+    "cluster": "Video and Stroke AI",
+    "name": "Annotation",
+    "definition": "Human labeling of video or data so an AI can learn or be checked.",
+    "example": "Coaches or analysts may label catch phase, breakout, breathing cycle, or turn touch points.",
+    "question": "Who labeled the data, and how consistent were they?",
+    "redflag": "Labels were created by non-experts or by one person without review."
+  },
+  {
+    "cluster": "Video and Stroke AI",
+    "name": "Inter-Rater Reliability",
+    "definition": "How consistently different reviewers label the same thing.",
+    "example": "If three coaches disagree on when the catch begins, AI trained on those labels may learn inconsistent patterns.",
+    "question": "Do expert reviewers agree on the labels?",
+    "redflag": "The vendor reports AI accuracy but never reports human agreement."
+  },
+  {
+    "cluster": "Video and Stroke AI",
+    "name": "Stroke Phase Segmentation",
+    "definition": "Dividing a stroke or race skill into meaningful phases.",
+    "example": "Butterfly may be segmented into entry, catch, pull, recovery, kick timing, breath, and body undulation.",
+    "question": "Are phases defined in coaching language?",
+    "redflag": "The system segments motion in ways that coaches cannot act on."
+  },
+  {
+    "cluster": "Video and Stroke AI",
+    "name": "Camera Angle Bias",
+    "definition": "Error caused by the location, height, distance, or movement of the camera.",
+    "example": "A side-deck angle may show body line well but miss hand depth. A head-on angle may show asymmetry better.",
+    "question": "Was the model tested across the camera positions used by real teams?",
+    "redflag": "A tool calibrated for one angle is used at every pool."
+  },
+  {
+    "cluster": "Video and Stroke AI",
+    "name": "Measurement Error",
+    "definition": "The difference between what the system reports and the true value.",
+    "example": "An app may report turn time 0.08 seconds off because the wall touch or push-off frame is hard to identify.",
+    "question": "What is the expected error range for this metric?",
+    "redflag": "A difference smaller than the measurement error is treated as important."
+  },
+  {
+    "cluster": "Athlete Monitoring",
+    "name": "Training Load",
+    "definition": "A measure of training stress over time.",
+    "example": "Load may include volume, intensity, race-pace work, dryland, attendance, wellness, and subjective effort.",
+    "question": "Does the metric reflect what actually stresses this athlete?",
+    "redflag": "Yardage alone is treated as total load."
+  },
+  {
+    "cluster": "Athlete Monitoring",
+    "name": "Recovery Modeling",
+    "definition": "Estimating how ready an athlete may be to train or race.",
+    "example": "A model may combine sleep, soreness, attendance, recent intensity, mood, and performance changes.",
+    "question": "Is this a readiness clue or a medical claim?",
+    "redflag": "The system diagnoses fatigue, injury, or illness without clinical evaluation."
+  },
+  {
+    "cluster": "Athlete Monitoring",
+    "name": "Wearable Data",
+    "definition": "Data collected by devices such as watches, sensors, or heart-rate monitors.",
+    "example": "Wearables can provide useful signals, but readings can be affected by water, device fit, stroke type, and motion artifacts.",
+    "question": "How accurate is the device in swimming conditions?",
+    "redflag": "Wearable numbers override coach observation and athlete feedback."
+  },
+  {
+    "cluster": "Athlete Monitoring",
+    "name": "Missing Data",
+    "definition": "Information that is absent, incomplete, or unreliable.",
+    "example": "A swimmer may have incomplete training logs, missing sleep data, or no video from key races.",
+    "question": "What important context is not in the dataset?",
+    "redflag": "The AI acts confident even when major data are missing."
+  },
+  {
+    "cluster": "Athlete Monitoring",
+    "name": "Confounding Variable",
+    "definition": "A hidden or unmeasured factor that affects the outcome.",
+    "example": "A time drop may be related to growth, suit, taper, competition level, technical change, or motivation, not just a new set.",
+    "question": "What else could explain the result?",
+    "redflag": "A training method gets full credit for an improvement that had multiple causes."
+  },
+  {
+    "cluster": "Athlete Monitoring",
+    "name": "Correlation vs Causation",
+    "definition": "Correlation means two things move together. Causation means one thing produces the other.",
+    "example": "Attendance and improvement may correlate, but improvement may also reflect coaching, maturity, technical change, and athlete motivation.",
+    "question": "What evidence supports cause rather than association?",
+    "redflag": "The tool says a variable caused a time drop when it only moved with it."
+  },
+  {
+    "cluster": "Athlete Monitoring",
+    "name": "Data Drift",
+    "definition": "When the data entering a system change over time.",
+    "example": "A swimmer's growth spurt, new stroke mechanics, new training group, or new season plan can make old patterns less reliable.",
+    "question": "Has the model been recalibrated for the current athlete and season?",
+    "redflag": "Old predictions are trusted after the athlete has changed."
+  },
+  {
+    "cluster": "Athlete Monitoring",
+    "name": "Individual Baseline",
+    "definition": "A swimmer's own normal range for training, race, and recovery metrics.",
+    "example": "For some swimmers, a high stroke count is normal. For others, the same count signals fatigue or technical breakdown.",
+    "question": "How does this compare with this swimmer's own baseline?",
+    "redflag": "The tool compares everyone to one generic standard."
+  },
+  {
+    "cluster": "Athlete Monitoring",
+    "name": "Multimodal Data",
+    "definition": "Combining several data types.",
+    "example": "A robust swim profile might combine splits, video, coach notes, wellness, attendance, and meet context.",
+    "question": "Which data types are reliable enough to combine?",
+    "redflag": "More data sources create false confidence instead of better judgment."
+  },
+  {
+    "cluster": "Athlete Monitoring",
+    "name": "Small Sample Risk",
+    "definition": "The risk of drawing conclusions from too few examples.",
+    "example": "One great swim after a new set does not prove the set worked. One bad meet does not prove the plan failed.",
+    "question": "How many comparable data points support this conclusion?",
+    "redflag": "A single race drives a major training decision."
+  },
+  {
+    "cluster": "Risk and Governance",
+    "name": "Automation Bias",
+    "definition": "Trusting AI output because it sounds precise or authoritative.",
+    "example": "An app says a swimmer's limiter is stroke rate, so the coach changes the plan without reviewing video, splits, health, sleep, or recent training.",
+    "question": "What athlete context might the AI be missing?",
+    "redflag": "The coach defers to the app instead of using it as one input."
+  },
+  {
+    "cluster": "Risk and Governance",
+    "name": "False Precision",
+    "definition": "Making an estimate look more exact than the evidence supports.",
+    "example": "A tool predicts a swimmer will drop exactly 0.73 seconds, even though normal variation and measurement error may be larger.",
+    "question": "Is this level of decimal precision justified?",
+    "redflag": "Tiny differences are used to make big decisions."
+  },
+  {
+    "cluster": "Risk and Governance",
+    "name": "Overfitting",
+    "definition": "When a model fits past data too tightly and performs poorly on new cases.",
+    "example": "A model may perfectly explain last season's 100 free results but fail when the swimmer changes training group or matures.",
+    "question": "Was it tested on future data, not just past data?",
+    "redflag": "Great retrospective fit is marketed as future accuracy."
+  },
+  {
+    "cluster": "Risk and Governance",
+    "name": "Dataset Bias",
+    "definition": "When data overrepresent some groups and underrepresent others.",
+    "example": "A tool built mostly on elite male sprint footage may work worse for younger swimmers, distance swimmers, para swimmers, or breaststrokers.",
+    "question": "Who is missing from the training and validation data?",
+    "redflag": "The vendor says 'all swimmers' without subgroup testing."
+  },
+  {
+    "cluster": "Risk and Governance",
+    "name": "Hallucination",
+    "definition": "When a generative AI produces plausible but false content.",
+    "example": "A chatbot may invent a rule, misstate a qualifying standard, or create a practice set that conflicts with the coach's purpose.",
+    "question": "Can the output be verified against official sources or coach expertise?",
+    "redflag": "AI-generated facts are copied into parent emails or team plans without checking."
+  },
+  {
+    "cluster": "Risk and Governance",
+    "name": "Guardrails",
+    "definition": "Rules or constraints that limit unsafe or inappropriate AI behavior.",
+    "example": "A swim tool should avoid recommending unsafe training jumps, medical advice, or psychological labels about young athletes.",
+    "question": "What outputs are blocked or flagged?",
+    "redflag": "The system freely labels a minor as low potential or injury-prone."
+  },
+  {
+    "cluster": "Risk and Governance",
+    "name": "Human Oversight",
+    "definition": "Keeping the coach responsible for interpretation and decisions.",
+    "example": "AI may summarize patterns, but the coach judges athlete context, readiness, motivation, safety, and long-term development.",
+    "question": "Which decisions require coach review before action?",
+    "redflag": "The system sends recommendations directly to athletes or parents without coach review."
+  },
+  {
+    "cluster": "Risk and Governance",
+    "name": "Data Ownership",
+    "definition": "Who controls athlete data and what can be done with it.",
+    "example": "Swim data may include videos, times, wellness logs, parent contact data, and recruiting-sensitive information.",
+    "question": "Can the club export, delete, or restrict use of its data?",
+    "redflag": "The vendor can reuse athlete data for product training without clear permission."
+  },
+  {
+    "cluster": "Risk and Governance",
+    "name": "Minor Athlete Privacy",
+    "definition": "Special care for data from children and teens.",
+    "example": "Video, performance notes, communication logs, and wellness data from minors require strict access controls and parent or guardian awareness where applicable.",
+    "question": "What data are collected from minors, who can see them, and how long are they retained?",
+    "redflag": "A tool stores identifiable video of minors with vague privacy terms."
+  },
+  {
+    "cluster": "Risk and Governance",
+    "name": "Consent",
+    "definition": "Permission for collection, use, sharing, or publication of data.",
+    "example": "Consent should be specific to the data type, purpose, audience, and duration, especially for minors and video.",
+    "question": "Was consent meaningful, documented, and revocable?",
+    "redflag": "A general team waiver is treated as permission for every future AI use."
+  },
+  {
+    "cluster": "Risk and Governance",
+    "name": "Vendor Validation",
+    "definition": "Evidence that a tool performs as claimed in the setting where it will be used.",
+    "example": "A vendor should show accuracy by event, stroke, age group, course, camera angle, and level when relevant.",
+    "question": "What independent evidence supports the claim?",
+    "redflag": "Marketing examples replace validation data."
+  },
+  {
+    "cluster": "Risk and Governance",
+    "name": "Audit Trail",
+    "definition": "A record of what data were used, what the system output, and who acted on it.",
+    "example": "For high-stakes athlete decisions, a club should know what the AI recommended and what the coach decided.",
+    "question": "Can we reconstruct why a decision was made?",
+    "redflag": "There is no record of AI-assisted recommendations."
+  }
+];
+const clusters = ["All", ...Array.from(new Set(TERMS.map(t => t.cluster)))];
+let active = "All";
+const cards = document.getElementById("cards");
+const filters = document.getElementById("filters");
+const search = document.getElementById("search");
+
+function renderFilters() {
+  filters.innerHTML = clusters.map(c => `<button class="chip ${c===active?'active':''}" data-c="${c}">${c}</button>`).join("");
+  filters.querySelectorAll("button").forEach(b => b.addEventListener("click", () => { active = b.dataset.c; render(); renderFilters(); }));
+}
+
+function render() {
+  const q = search.value.trim().toLowerCase();
+  const list = TERMS.filter(t => (active === "All" || t.cluster === active) && (!q || Object.values(t).join(" ").toLowerCase().includes(q)));
+  cards.innerHTML = list.map(t => `
+    <article class="term">
+      <div class="term-top"><div><span class="badge">${t.cluster}</span><h3>${t.name}</h3></div></div>
+      <p>${t.definition}</p>
+      <div class="mini">
+        <div><b>Swim example:</b> ${t.example}</div>
+        <div><b>Coach question:</b> ${t.question}</div>
+        <div><b>Red flag:</b> ${t.redflag}</div>
+      </div>
+    </article>`).join("") || `<div class="callout">No matching terms. Try a broader search such as video, privacy, prediction, or splits.</div>`;
+}
+
+search.addEventListener("input", render);
+renderFilters();
+render();
+</script>
+</body>
+</html>
